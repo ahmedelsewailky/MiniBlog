@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('title')->unique();
             $table->string('slug');
             $table->longText('article');
-            $table->boolean('')->default(false); // Post most be review first
+            $table->boolean('status')->default(false); // Post most be review first
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('views')->unsigned();
