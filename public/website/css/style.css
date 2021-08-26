@@ -736,7 +736,8 @@ h1, h2, h3, h4, h5,
   .entry2 .post-meta a {
     color: #000; }
   .entry2 .post-meta .author-figure img {
-    width: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%; }
 
 .entry3, .entry4 {
