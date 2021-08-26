@@ -15,6 +15,14 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->text('image');
+            $table->string('title')->unique();
+            $table->string('slug');
+            $table->longText('article');
+            $table->boolean('')->default(false); // Post most be review first
+            $table->integer('category_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('views')->unsigned();
             $table->timestamps();
         });
     }
