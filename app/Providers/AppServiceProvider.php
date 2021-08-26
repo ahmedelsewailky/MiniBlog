@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +27,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Define Schema String Length
         Schema::defaultStringLength(191);
+
+        // Sharing Categories
+        $categories = Category::take(6)->get();
+
+        // Sharing Recommended Posts
+        $recommended_posts = Post::orderBy('views', 'DESC')->take(4)->get();
+
+        View::share([
+            'categories' => $categories,
+            'recommended_posts' => $recommended_posts,
+        ]);
     }
 }
