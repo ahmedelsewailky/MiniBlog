@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('website') }}/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="{{ asset('website') }}/fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="{{ asset('website') }}/css/aos.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
 
     <link rel="stylesheet" href="{{ asset('website') }}/css/style.css">
   </head>
@@ -104,10 +105,9 @@
               <li><a href="#">Subscribes</a></li>
             </ul>
             <ul class="list-unstyled float-left">
-              <li><a href="#">Travel</a></li>
-              <li><a href="#">Lifestyle</a></li>
-              <li><a href="#">Sports</a></li>
-              <li><a href="#">Nature</a></li>
+              @foreach ($categories as $category)
+              <li><a href="#">{{ Str::ucfirst($category->name) }}</a></li>
+              @endforeach
             </ul>
           </div>
           <div class="col-md-4">

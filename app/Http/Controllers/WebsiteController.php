@@ -11,25 +11,13 @@ class WebsiteController extends Controller
     public function index()
     {
         $latest_posts = Post::latest()->take(5)->get();
-        $latest_posts_left = $latest_posts->splice(0,2);
-        $latest_posts_centered = $latest_posts->splice(0,1);
-        $latest_posts_right = $latest_posts->splice(0,2);
-
         $recent_posts = Post::orderBy('created_at', 'DESC')->paginate(9);
-
         $recomended_posts = Post::orderBy('views', 'DESC')->take(4)->get();
-        $recomended_posts_left_top = $recomended_posts->splice(0,1);
-        $recomended_posts_left_bottom = $recomended_posts->splice(0,2);
-        $recomended_posts_right = $recomended_posts->splice(0,1);
 
         return view('website.index', compact([
-            'latest_posts_left',
-            'latest_posts_centered',
-            'latest_posts_right',
+            'latest_posts',
             'recent_posts',
-            'recomended_posts_left_top',
-            'recomended_posts_left_bottom',
-            'recomended_posts_right',
+            'recomended_posts',
         ]));
     }
 

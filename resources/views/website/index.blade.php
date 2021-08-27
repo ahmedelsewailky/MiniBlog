@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row align-items-stretch retro-layout-2">
             <div class="col-md-4">
-                @foreach ($latest_posts_left as $post)
+                @foreach ($latest_posts->splice(0,2) as $post)
                 <a href="{{ route('post', $post->slug) }}" class="h-entry mb-30 v-height gradient"
                     style="background-image: url('{{ $post->image }}');">
 
@@ -19,7 +19,7 @@
                 @endforeach
             </div>
             <div class="col-md-4">
-                @foreach ($latest_posts_centered as $post)
+                @foreach ($latest_posts->splice(0,1) as $post)
                 <a href="{{ route('post', $post->slug) }}" class="h-entry img-5 h-100 gradient"
                     style="background-image: url('{{ $post->image }}');">
 
@@ -34,7 +34,7 @@
                 @endforeach
             </div>
             <div class="col-md-4">
-                @foreach ($latest_posts_right as $post)
+                @foreach ($latest_posts->splice(0,2) as $post)
                 <a href="{{ route('post', $post->slug) }}" class="h-entry mb-30 v-height gradient"
                     style="background-image: url('{{ $post->image }}');">
 
@@ -100,7 +100,7 @@
         <div class="row align-items-stretch retro-layout">
 
             <div class="col-md-5 order-md-2">
-                @foreach ($recomended_posts_right as $post)
+                @foreach ($recomended_posts->splice(0,1) as $post)
                 <a href="{{ route('post', $post->slug) }}" class="hentry img-1 h-100 gradient"
                     style="background-image: url('{{ $post->image }}');">
                     <span class="post-category text-white bg-danger">{{ Str::ucfirst($post->category->name) }}</span>
@@ -113,7 +113,7 @@
             </div>
 
             <div class="col-md-7">
-                @foreach ($recomended_posts_left_top as $post)
+                @foreach ($recomended_posts->splice(0,1) as $post)
                 <a href="{{ route('post', $post->slug) }}" class="hentry img-2 v-height mb30 gradient"
                     style="background-image: url('{{ $post->image }}');">
                     <span class="post-category text-white bg-success">{{ Str::ucfirst($post->category->name) }}</span>
@@ -125,7 +125,7 @@
                 @endforeach
 
                 <div class="two-col d-block d-md-flex justify-content-between">
-                    @foreach ($recomended_posts_left_bottom as $post)
+                    @foreach ($recomended_posts->splice(0,2) as $post)
                     <a href="{{ route('post', $post->slug) }}" class="hentry v-height img-2 gradient"
                         style="background-image: url('{{ $post->image }}');">
                         <span

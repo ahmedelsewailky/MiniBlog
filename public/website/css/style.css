@@ -1113,7 +1113,8 @@ h1, h2, h3, h4, h5,
     color: #000; }
 
 .bio img {
-  max-width: 150px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%; }
 
 .custom-pagination span, .custom-pagination a {

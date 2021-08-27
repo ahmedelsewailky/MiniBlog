@@ -91,16 +91,15 @@
                 <!-- END sidebar-box -->
                 <div class="sidebar-box">
                     <div class="bio text-center">
-                        <img src="images/person_2.jpg" alt="Image Placeholder" class="img-fluid mb-5">
+                        <img src="{{ $post->user->image }}" alt="Image Placeholder" class="img-fluid mb-2">
                         <div class="bio-body">
                             <h2>{{ Str::ucfirst($post->user->name) }}</h2>
                             <p class="mb-4">{{ Str::limit($post->user->description, 100) }}</p>
-                            <p><a href="#" class="btn btn-primary btn-sm rounded px-4 py-2">Read my bio</a></p>
                             <p class="social">
-                                <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
-                                <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
-                                <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
-                                <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
+                                <a href="#" class="p-2"><span class="fab fa-facebook"></span></a>
+                                <a href="#" class="p-2"><span class="fab fa-twitter"></span></a>
+                                <a href="#" class="p-2"><span class="fab fa-instagram"></span></a>
+                                <a href="#" class="p-2"><span class="fab fa-youtube-play"></span></a>
                             </p>
                         </div>
                     </div>
