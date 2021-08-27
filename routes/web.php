@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WebsiteController::class, 'index'])->name('website');
+
+Route::get('/post/{slug}', [WebsiteController::class, 'post'])->name('post');

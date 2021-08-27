@@ -522,7 +522,8 @@ h1, h2, h3, h4, h5,
     color: #fff;
     font-size: 13px; }
     .site-cover .post-entry .post-meta .author-figure img {
-      width: 30px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%; }
   .site-cover .post-entry h2 {
     font-family: "Muli", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";

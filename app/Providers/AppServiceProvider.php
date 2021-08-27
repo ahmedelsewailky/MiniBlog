@@ -32,13 +32,6 @@ class AppServiceProvider extends ServiceProvider
 
         // Sharing Categories
         $categories = Category::take(6)->get();
-
-        // Sharing Recommended Posts
-        $recommended_posts = Post::orderBy('views', 'DESC')->take(4)->get();
-
-        View::share([
-            'categories' => $categories,
-            'recommended_posts' => $recommended_posts,
-        ]);
+        View::share('categories', $categories);
     }
 }
