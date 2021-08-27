@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
@@ -22,7 +23,8 @@ class WebsiteController extends Controller
     public function post($slug)
     {
         $post = Post::where('slug', $slug)->first();
+        $tags = Tag::all();
         $popular_posts = Post::orderBy('views', 'DESC')->take(3)->get();
-        return view('website.single', compact(['post', 'popular_posts']));
+        return view('website.single', compact(['post', 'popular_posts', 'tags']));
     }
 }
