@@ -24,6 +24,7 @@ class WebsiteController extends Controller
     public function post($slug)
     {
         $post = Post::where('slug', $slug)->first();
+        $post->increment('views');
         $tags = Tag::all();
         $popular_posts = Post::orderBy('views', 'DESC')->take(3)->get();
         return view('website.single', compact(['post', 'popular_posts', 'tags']));
