@@ -14,10 +14,10 @@
                     <div class="text">
                         <h2>{{ $post->title }}</h2>
                         <div class="meta">
-                            <span class="date mr-2">{{ $post->created_at->diffForHumans() }}</span>
+                            <span class="date me-2">{{ $post->created_at->diffForHumans() }}</span>
                             <span class="comments"><i class="far fa-comment-alt"></i>
                                 {{ $post->comments->count() }}</span>
-                            <span class="views ml-2">
+                            <span class="views ms-2">
                                 <i class="fas fa-fire"></i>
                                 {{ $post->views }}
                             </span>
@@ -37,10 +37,10 @@
                         </div>
                         <h2>{{ $post->title }}</h2>
                         <div class="meta">
-                            <span class="date mr-2">{{ $post->created_at->diffForHumans() }}</span>
+                            <span class="date me-2">{{ $post->created_at->diffForHumans() }}</span>
                             <span class="comments"><i class="far fa-comment-alt"></i>
                                 {{ $post->comments->count() }}</span>
-                            <span class="views ml-2">
+                            <span class="views ms-2">
                                 <i class="fas fa-fire"></i>
                                 {{ $post->views }}
                             </span>
@@ -57,10 +57,10 @@
                     <div class="text">
                         <h2>{{ $post->title }}</h2>
                         <div class="meta">
-                            <span class="date mr-2">{{ $post->created_at->diffForHumans() }}</span>
+                            <span class="date me-2">{{ $post->created_at->diffForHumans() }}</span>
                             <span class="comments"><i class="far fa-comment-alt"></i>
                                 {{ $post->comments->count() }}</span>
-                            <span class="views ml-2">
+                            <span class="views ms-2">
                                 <i class="fas fa-fire"></i>
                                 {{ $post->views }}
                             </span>
@@ -94,7 +94,7 @@
 
                         <h2><a href="{{ route('post', $post->slug) }}">{{ $post->tilte }}</a></h2>
                         <div class="post-meta align-items-center text-left clearfix">
-                            <figure class="author-figure mb-0 mr-3 float-left"><img src="{{ $post->user->image }}"
+                            <figure class="author-figure mb-0 me-3 float-start"><img src="{{ $post->user->image }}"
                                     alt="Image" class="img-fluid"></figure>
                             <span class="d-inline-block mt-1">By <a
                                     href="#">{{ Str::ucfirst($post->user->name) }}</a></span>
@@ -102,7 +102,7 @@
                         </div>
 
                         <p>{{ str::limit($post->article, 200)}}</p>
-                        <p><a href="#">Read More</a></p>
+                        <p><a href="{{ url('/post', $post->slug) }}">Read More</a></p>
                     </div>
                 </div>
             </div>
@@ -132,10 +132,10 @@
                     <div class="text">
                         <h2>{{ $post->title }}</h2>
                         <div class="meta">
-                            <span class="date mr-2">{{ $post->created_at->diffForHumans() }}</span>
+                            <span class="date me-2">{{ $post->created_at->diffForHumans() }}</span>
                             <span class="comments"><i class="far fa-comment-alt"></i>
                                 {{ $post->comments->count() }}</span>
-                            <span class="views ml-2">
+                            <span class="views ms-2">
                                 <i class="fas fa-fire"></i>
                                 {{ $post->views }}
                             </span>
@@ -153,10 +153,10 @@
                     <div class="text text-sm">
                         <h2>{{ $post->title }}</h2>
                         <div class="meta">
-                            <span class="date mr-2">{{ $post->created_at->diffForHumans() }}</span>
+                            <span class="date me-2">{{ $post->created_at->diffForHumans() }}</span>
                             <span class="comments"><i class="far fa-comment-alt"></i>
                                 {{ $post->comments->count() }}</span>
-                            <span class="views ml-2">
+                            <span class="views ms-2">
                                 <i class="fas fa-fire"></i>
                                 {{ $post->views }}
                             </span>
@@ -174,10 +174,10 @@
                         <div class="text text-sm">
                             <h2>{{ $post->title }}</h2>
                             <div class="meta">
-                            <span class="date mr-2">{{ $post->created_at->diffForHumans() }}</span>
+                            <span class="date me-2">{{ $post->created_at->diffForHumans() }}</span>
                             <span class="comments"><i class="far fa-comment-alt"></i>
                                 {{ $post->comments->count() }}</span>
-                            <span class="views ml-2">
+                            <span class="views ms-2">
                                 <i class="fas fa-fire"></i>
                                 {{ $post->views }}
                             </span>

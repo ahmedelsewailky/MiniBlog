@@ -85,7 +85,7 @@
 							@foreach ($popular_posts as $post)
                             <li>
                                 <a href="">
-                                    <img src="{{ $post->image }}" alt="Image placeholder" class="mr-4">
+                                    <img src="{{ $post->image }}" alt="Image placeholder" class="me-2">
                                     <div class="text">
                                         <h4>{{ Str::limit($post->title, 40) }}</h4>
                                         <div class="post-meta">

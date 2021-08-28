@@ -24,6 +24,10 @@
   
   <div class="site-wrap">
 
+    {{-- <div id="loader">
+      <span><img src="{{ asset('website') }}/images/preloader.gif" alt=""></span>
+    </div> --}}
+
     <div class="site-mobile-menu">
       <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -36,7 +40,7 @@
 
     <!-- Navbar -->
     <header class="site-navbar" role="banner">
-      <div class="container-fluid">
+      <div class="container">
         <div class="row align-items-center">
           
           <div class="col-12 search-form-wrap js-search-form">
@@ -47,12 +51,12 @@
           </div>
 
           <div class="col-4 site-logo">
-            <a href="{{ route('website') }}" class="text-black h2 mb-0">Mini Blog</a>
+            <a href="{{ route('website') }}" class="nav-link">Mini Blog</a>
           </div>
 
-          <div class="col-8 text-right">
+          <div class="col-8 text-end">
             <nav class="site-navigation" role="navigation">
-              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
+              <ul class="site-menu js-clone-nav ms-auto d-none d-lg-block mb-0">
                 @foreach ($categories as $category)
                 <li><a href="category.html">{{ Str::ucfirst($category->name) }}</a></li>
                 @endforeach
@@ -96,23 +100,21 @@
             <h3 class="footer-heading mb-4">About Us</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat reprehenderit magnam deleniti quasi saepe, consequatur atque sequi delectus dolore veritatis obcaecati quae, repellat eveniet omnis, voluptatem in. Soluta, eligendi, architecto.</p>
           </div>
-          <div class="col-md-3 ml-auto">
+          <div class="col-md-3">
             <!-- <h3 class="footer-heading mb-4">Navigation</h3> -->
-            <ul class="list-unstyled float-left mr-5">
+            <ul class="list-unstyled float-end ms-5">
               <li><a href="#">About Us</a></li>
               <li><a href="#">Advertise</a></li>
               <li><a href="#">Careers</a></li>
               <li><a href="#">Subscribes</a></li>
             </ul>
-            <ul class="list-unstyled float-left">
+            <ul class="list-unstyled float-end">
               @foreach ($categories as $category)
               <li><a href="#">{{ Str::ucfirst($category->name) }}</a></li>
               @endforeach
             </ul>
           </div>
-          <div class="col-md-4">
-            
-
+          <div class="col-md-4 ms-auto">
             <div>
               <h3 class="footer-heading mb-4">Connect With Us</h3>
               <p>
@@ -142,12 +144,12 @@
   <script src="{{ asset('website') }}/js/jquery-3.3.1.min.js"></script>
   <script src="{{ asset('website') }}/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="{{ asset('website') }}/js/jquery-ui.js"></script>
-  <script src="{{ asset('website') }}/js/popper.min.js"></script>
-  <script src="{{ asset('website') }}/js/bootstrap.min.js"></script>
+  <script src="{{ asset('website') }}/js/bootstrap.bundle.min.js"></script>
   <script src="{{ asset('website') }}/js/owl.carousel.min.js"></script>
   <script src="{{ asset('website') }}/js/jquery.stellar.min.js"></script>
   <script src="{{ asset('website') }}/js/jquery.countdown.min.js"></script>
   <script src="{{ asset('website') }}/js/jquery.magnific-popup.min.js"></script>
+  <script src="{{ asset('website') }}/js/jquery.preloader.js"></script>
   <script src="{{ asset('website') }}/js/bootstrap-datepicker.min.js"></script>
   <script src="{{ asset('website') }}/js/aos.js"></script>
 

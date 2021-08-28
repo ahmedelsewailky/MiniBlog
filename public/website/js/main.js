@@ -4,11 +4,13 @@
  	once: true
  });
 
-jQuery(document).ready(function($) {
+$(function($) {
 
 	"use strict";
 
-	
+	// $(window).on('load', function(){
+	// 	$('#loader').fadeOut();
+	// });
 
 	var siteMenuClone = function() {
 
