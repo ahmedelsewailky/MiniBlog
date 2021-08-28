@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -28,5 +29,12 @@ class WebsiteController extends Controller
         $tags = Tag::all();
         $popular_posts = Post::orderBy('views', 'DESC')->take(3)->get();
         return view('website.single', compact(['post', 'popular_posts', 'tags']));
+    }
+
+    public function category($slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+        $posts = Post::where('category_id', $category->id)->paginate(9);
+        return view('website.category', compact(['posts', 'category']));
     }
 }
