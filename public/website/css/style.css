@@ -625,7 +625,7 @@ h1, h2, h3, h4, h5,
   bottom: 0;
   z-index: 10;
   padding: 20px;
-  max-width: 350px; }
+  width: 100%; }
   .retro-layout .text h2 {
     color: #fff;
     font-size: 26px; }
@@ -686,7 +686,7 @@ h1, h2, h3, h4, h5,
   bottom: 0;
   z-index: 10;
   padding: 20px;
-  max-width: 350px; }
+  width: 100%; }
   .retro-layout-2 .text h2 {
     color: #fff;
     font-size: 18px;
