@@ -22,7 +22,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'image' => '/website/images/posts/seeding/image-'.$this->faker->numberBetween(1,30).'.jpg',
+            'image' => 'https://picsum.photos/'.$this->faker->numberBetween(450,500).'.jpg',
             'title' => $this->faker->unique()->text(75),
             'slug' => $this->faker->slug(),
             'category_id' => $this->faker->numberBetween(1,30),
