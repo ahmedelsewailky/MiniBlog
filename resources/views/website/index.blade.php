@@ -13,7 +13,15 @@
 
                     <div class="text">
                         <h2>{{ $post->title }}</h2>
-                        <span class="date">{{ $post->created_at->diffForHumans() }}</span>
+                        <div class="meta">
+                            <span class="date mr-2">{{ $post->created_at->diffForHumans() }}</span>
+                            <span class="comments"><i class="far fa-comment-alt"></i>
+                                {{ $post->comments->count() }}</span>
+                            <span class="views ml-2">
+                                <i class="fas fa-fire"></i>
+                                {{ $post->views }}
+                            </span>
+                        </div>
                     </div>
                 </a>
                 @endforeach
@@ -28,7 +36,15 @@
                             <span class="post-category bg-danger">{{ Str::ucfirst($post->category->name) }}</span>
                         </div>
                         <h2>{{ $post->title }}</h2>
-                        <span class="date">{{ $post->created_at->diffForHumans() }}</span>
+                        <div class="meta">
+                            <span class="date mr-2">{{ $post->created_at->diffForHumans() }}</span>
+                            <span class="comments"><i class="far fa-comment-alt"></i>
+                                {{ $post->comments->count() }}</span>
+                            <span class="views ml-2">
+                                <i class="fas fa-fire"></i>
+                                {{ $post->views }}
+                            </span>
+                        </div>
                     </div>
                 </a>
                 @endforeach
@@ -40,7 +56,15 @@
 
                     <div class="text">
                         <h2>{{ $post->title }}</h2>
-                        <span class="date">{{ $post->created_at->diffForHumans() }}</span>
+                        <div class="meta">
+                            <span class="date mr-2">{{ $post->created_at->diffForHumans() }}</span>
+                            <span class="comments"><i class="far fa-comment-alt"></i>
+                                {{ $post->comments->count() }}</span>
+                            <span class="views ml-2">
+                                <i class="fas fa-fire"></i>
+                                {{ $post->views }}
+                            </span>
+                        </div>
                     </div>
                 </a>
                 @endforeach
@@ -62,7 +86,8 @@
             @foreach ($recent_posts as $post)
             <div class="col-lg-4 mb-4">
                 <div class="entry2">
-                    <a href="{{ route('post', $post->slug) }}"><img src="{{ $post->image }}" alt="Image" class="img-fluid rounded"></a>
+                    <a href="{{ route('post', $post->slug) }}"><img src="{{ $post->image }}" alt="Image"
+                            class="img-fluid rounded"></a>
                     <div class="excerpt">
                         <span
                             class="post-category text-white bg-secondary mb-3">{{ Str::ucfirst($post->category->name) }}</span>
@@ -106,7 +131,15 @@
                     <span class="post-category text-white bg-danger">{{ Str::ucfirst($post->category->name) }}</span>
                     <div class="text">
                         <h2>{{ $post->title }}</h2>
-                        <span>{{ $post->created_at->diffForHumans() }}</span>
+                        <div class="meta">
+                            <span class="date mr-2">{{ $post->created_at->diffForHumans() }}</span>
+                            <span class="comments"><i class="far fa-comment-alt"></i>
+                                {{ $post->comments->count() }}</span>
+                            <span class="views ml-2">
+                                <i class="fas fa-fire"></i>
+                                {{ $post->views }}
+                            </span>
+                        </div>
                     </div>
                 </a>
                 @endforeach
@@ -119,7 +152,15 @@
                     <span class="post-category text-white bg-success">{{ Str::ucfirst($post->category->name) }}</span>
                     <div class="text text-sm">
                         <h2>{{ $post->title }}</h2>
-                        <span>{{ $post->created_at->diffForHumans() }}</span>
+                        <div class="meta">
+                            <span class="date mr-2">{{ $post->created_at->diffForHumans() }}</span>
+                            <span class="comments"><i class="far fa-comment-alt"></i>
+                                {{ $post->comments->count() }}</span>
+                            <span class="views ml-2">
+                                <i class="fas fa-fire"></i>
+                                {{ $post->views }}
+                            </span>
+                        </div>
                     </div>
                 </a>
                 @endforeach
@@ -132,7 +173,15 @@
                             class="post-category text-white bg-primary">{{ Str::ucfirst($post->category->name) }}</span>
                         <div class="text text-sm">
                             <h2>{{ $post->title }}</h2>
-                            <span>{{ $post->created_at->diffForHumans() }}</span>
+                            <div class="meta">
+                            <span class="date mr-2">{{ $post->created_at->diffForHumans() }}</span>
+                            <span class="comments"><i class="far fa-comment-alt"></i>
+                                {{ $post->comments->count() }}</span>
+                            <span class="views ml-2">
+                                <i class="fas fa-fire"></i>
+                                {{ $post->views }}
+                            </span>
+                        </div>
                         </div>
                     </a>
                     @endforeach

@@ -1,4 +1,5 @@
-<div class="card">
+<h3 class="mb-2">Leave a comment</h3>
+<div class="card comment-form-wrap bg-light">
     <div class="card-body">
         @if($errors->has('commentable_type'))
             <div class="alert alert-danger" role="alert">
@@ -46,7 +47,7 @@
                 </div>
                 <small class="form-text text-muted">@lang('comments::comments.markdown_cheatsheet', ['url' => 'https://help.github.com/articles/basic-writing-and-formatting-syntax'])</small>
             </div>
-            <button type="submit" class="btn btn-sm btn-outline-success text-uppercase">@lang('comments::comments.submit')</button>
+            <button type="submit" class="btn btn-sm btn-primary text-uppercase">@lang('comments::comments.submit')</button>
         </form>
     </div>
 </div>
