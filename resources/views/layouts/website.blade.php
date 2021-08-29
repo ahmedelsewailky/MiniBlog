@@ -101,9 +101,7 @@
                  <div class="row mb-5">
                      <div class="col-md-4">
                          <h3 class="footer-heading mb-4">About Us</h3>
-                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat reprehenderit magnam
-                             deleniti quasi saepe, consequatur atque sequi delectus dolore veritatis obcaecati quae,
-                             repellat eveniet omnis, voluptatem in. Soluta, eligendi, architecto.</p>
+                         <p>{{ Str::limit($setting->site_description, 250) }}</p>
                      </div>
                      <div class="col-md-3">
                          <!-- <h3 class="footer-heading mb-4">Navigation</h3> -->
@@ -123,27 +121,16 @@
                          <div>
                              <h3 class="footer-heading mb-4">Connect With Us</h3>
                              <p>
-                                 <a href="#"><span class="icon-facebook pt-2 pr-2 pb-2 pl-0"></span></a>
-                                 <a href="#"><span class="icon-twitter p-2"></span></a>
-                                 <a href="#"><span class="icon-instagram p-2"></span></a>
-                                 <a href="#"><span class="icon-rss p-2"></span></a>
-                                 <a href="#"><span class="icon-envelope p-2"></span></a>
+                                 <a href="{{ $setting->site_social['facebook'] }}" target="_blank"><span class="icon-facebook pt-2 pr-2 pb-2 pl-0"></span></a>
+                                 <a href="{{ $setting->site_social['twitter'] }}" target="_blank"><span class="icon-twitter p-2"></span></a>
+                                 <a href="{{ $setting->site_social['instagram'] }}" target="_blank"><span class="icon-instagram p-2"></span></a>
                              </p>
                          </div>
                      </div>
                  </div>
                  <div class="row">
                      <div class="col-12 text-center">
-                         <p>
-                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                             Copyright &copy; <script>
-                                 document.write(new Date().getFullYear());
-
-                             </script> All rights reserved | This template is made with <i
-                                 class="icon-heart text-danger" aria-hidden="true"></i> by <a
-                                 href="https://colorlib.com" target="_blank">Colorlib</a>
-                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                         </p>
+                         <p>{{ $setting->site_copyright }}</p>
                      </div>
                  </div>
              </div>
