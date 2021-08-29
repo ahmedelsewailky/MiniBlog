@@ -5,9 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name') }} | Dashboard</title>
+    <title>{{ config('app.name') }} | @yield('title')</title>
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('dashboard') }}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('dashboard') }}/fonts/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('dashboard') }}/css/style.css" rel="stylesheet">
     <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
 </head>
@@ -15,40 +16,42 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-expand-lg navbar-default">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">AdminStrap</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Dashboard</a></li>
-                    <li><a href="pages.html">Pages</a></li>
-                    <li><a href="posts.html">Posts</a></li>
-                    <li><a href="users.html">Users</a></li>
+            <a class="navbar-brand" href="#">AdminStrap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('users.index') }}">Users</a>
+                    </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Welcome, {{ Str::ucfirst(Auth::user()->name) }}</a></li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Welcome, {{ Str::ucfirst(Auth::user()->name) }}</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
                             Logout
                         </a>
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
                     </li>
                 </ul>
             </div>
-            <!--/.nav-collapse -->
         </div>
     </nav>
 
@@ -63,7 +66,7 @@
                 </div>
                 <div class="col-md-2">
                     <div class="dropdown create">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             Create Content
                             <span class="caret"></span>
@@ -84,7 +87,7 @@
     <section id="breadcrumb">
         <div class="container">
             <ol class="breadcrumb">
-                <li class="active">Dashboard</li>
+                @yield('breadcrumbs')
             </ol>
         </div>
     </section>
@@ -96,37 +99,49 @@
 
                 <!-- Sidebar -->
                 <div class="col-md-3">
-                    <div class="list-group">
+
+                    <div class="list-group mb-3">
                         <a href="index.html" class="list-group-item active main-color-bg">
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
                         </a>
-                        <a href="pages.html" class="list-group-item"><span class="glyphicon glyphicon-list-alt"
-                                aria-hidden="true"></span> Pages <span class="badge">12</span></a>
-                        <a href="posts.html" class="list-group-item"><span class="glyphicon glyphicon-pencil"
-                                aria-hidden="true"></span> Posts <span class="badge">33</span></a>
-                        <a href="users.html" class="list-group-item"><span class="glyphicon glyphicon-user"
-                                aria-hidden="true"></span> Users <span class="badge">203</span></a>
+                        <a href="pages.html" class="list-group-item">
+                            <span class="fas fa-edit"></span> 
+                            Pages <span class="badge">12</span>
+                        </a>
+                        <a href="posts.html" class="list-group-item">
+                            <span class="fas fa-pencil-alt"></span> 
+                                Posts 
+                                <span class="badge">33</span>
+                            </a>
+                        <a href="{{ route('users.index') }}" class="list-group-item">
+                            <span  class="fas fa-user"></span> Users <span
+                                class="badge">203</span></a>
                     </div>
 
-                    <div class="well">
-                        <h4>Disk Space Used</h4>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                                aria-valuemax="100" style="width: 60%;">
-                                60%
-                            </div>
-                        </div>
-                        <h4>Bandwidth Used </h4>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                                aria-valuemax="100" style="width: 40%;">
-                                40%
+                    <div class="card mb-3 bg-light">
+                        <div class="card-body">
+                            <div class="well py-3">
+                                <h4>Disk Space Used</h4>
+                                <div class="progress mb-3">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                                        aria-valuemax="100" style="width: 60%;">
+                                        60%
+                                    </div>
+                                </div>
+                                <h4>Bandwidth Used </h4>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                                        aria-valuemax="100" style="width: 40%;">
+                                        40%
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="visit-web text-center">
-                        <a href="{{ route('website') }}" target="_blank" class="btn btn-sm btn-primary">Visit Website</a>    
+                        <a href="{{ route('website') }}" target="_blank" class="btn btn-sm btn-primary">Visit
+                            Website</a>
                     </div>
                 </div>
 
@@ -196,6 +211,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="{{ asset('dashboard') }}/js/bootstrap.min.js"></script>
+    <script src="{{ asset('dashboard') }}/fonts/fontawesome/js/all.min.js"></script>
 </body>
 
 </html>

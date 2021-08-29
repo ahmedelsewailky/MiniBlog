@@ -1,32 +1,36 @@
 @extends('layouts.dashboard')
+@section('title', 'Dashboard')
+@section('breadcrumbs')
+    <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-home"></i> Dashboard</li>
+@endsection
 @section('content')
 <!-- Website Overview -->
-<div class="panel panel-default">
-    <div class="panel-heading main-color-bg">
-        <h3 class="panel-title">Website Overview</h3>
+<div class="card mb-3">
+    <div class="card-header main-color-bg">
+        Website Overview
     </div>
-    <div class="panel-body">
+    <div class="card-body row">
         <div class="col-md-3">
             <div class="well dash-box">
-                <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ App\Models\User::all()->count() }}</h2>
+                <h2><span class="fas fa-users"></span> {{ App\Models\User::all()->count() }}</h2>
                 <h4>Users</h4>
             </div>
         </div>
         <div class="col-md-3">
             <div class="well dash-box">
-                <h2><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> 12</h2>
+                <h2><span class="fas fa-file-alt"></span> 12</h2>
                 <h4>Pages</h4>
             </div>
         </div>
         <div class="col-md-3">
             <div class="well dash-box">
-                <h2><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> {{ $posts->count() }}</h2>
+                <h2><span class="fas fa-underline"></span> {{ $posts->count() }}</h2>
                 <h4>Posts</h4>
             </div>
         </div>
         <div class="col-md-3">
             <div class="well dash-box">
-                <h2><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> {{ $setting->site_visitors }}
+                <h2><span class="fas fa-chart-bar"></span> {{ $setting->site_visitors }}
                 </h2>
                 <h4>Visitors</h4>
             </div>
@@ -35,11 +39,11 @@
 </div>
 
 <!-- Latest Users -->
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Latest Users</h3>
+<div class="card">
+    <div class="card-header  main-color-bg">
+        Latest Users
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <table class="table table-striped table-hover">
             <tr>
                 <th>Name</th>
