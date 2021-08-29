@@ -126,7 +126,7 @@
                     </div>
                     
                     <div class="visit-web text-center">
-                        <a href="{{ route('website') }}" target="_blank" class="btn btn-sm btn-success">Visit Website</a>    
+                        <a href="{{ route('website') }}" target="_blank" class="btn btn-sm btn-primary">Visit Website</a>    
                     </div>
                 </div>
 
