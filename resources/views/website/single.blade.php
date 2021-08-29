@@ -69,10 +69,9 @@
                             <h2>{{ Str::ucfirst($post->user->name) }}</h2>
                             <p class="mb-4">{{ Str::limit($post->user->description, 100) }}</p>
                             <p class="social">
-                                <a href="#" class="p-2"><span class="fab fa-facebook"></span></a>
-                                <a href="#" class="p-2"><span class="fab fa-twitter"></span></a>
-                                <a href="#" class="p-2"><span class="fab fa-instagram"></span></a>
-                                <a href="#" class="p-2"><span class="fab fa-youtube-play"></span></a>
+                                <a href="{{ $post->user->social['facebook'] }}" target="_blank" class="p-2"><span class="fab fa-facebook"></span></a>
+                                <a href="{{ $post->user->social['twitter'] }}" target="_blank" class="p-2"><span class="fab fa-twitter"></span></a>
+                                <a href="{{ $post->user->social['instagram'] }}" target="_blank" class="p-2"><span class="fab fa-instagram"></span></a>
                             </p>
                         </div>
                     </div>
