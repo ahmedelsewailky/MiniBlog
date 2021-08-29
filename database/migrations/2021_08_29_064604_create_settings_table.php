@@ -24,6 +24,7 @@ class CreateSettingsTable extends Migration
             $table->string('site_email');
             $table->string('site_location');
             $table->string('site_social');
+            $table->integer('site_visitors')->unsigned();
             $table->timestamps();
         });
     }
