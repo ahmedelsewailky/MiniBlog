@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Setting;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
 {
+    public function __construct()
+    {
+        $setting = Setting::all()->first();
+        $setting->increment('site_visitors');
+    }
+
     public function index()
     {
         $latest_posts = Post::latest()->take(5)->get();
