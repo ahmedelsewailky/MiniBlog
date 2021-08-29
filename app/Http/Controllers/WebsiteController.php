@@ -37,4 +37,15 @@ class WebsiteController extends Controller
         $posts = Post::where('category_id', $category->id)->paginate(9);
         return view('website.category', compact(['posts', 'category']));
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $posts = Post::query()
+            ->where('title', 'LIKE' ,"%{$search}%")
+            ->orWhere('article', 'LIKE' , "%{$search}%")
+            ->paginate(4);
+
+        return view('website.search', compact(['posts', 'search']));
+    }
 }

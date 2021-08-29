@@ -92,7 +92,7 @@
                         <span
                             class="post-category text-white bg-secondary mb-3">{{ Str::ucfirst($post->category->name) }}</span>
 
-                        <h2><a href="{{ route('post', $post->slug) }}">{{ $post->tilte }}</a></h2>
+                        <h2><a href="{{ route('post', $post->slug) }}">{{ $post->title }}</a></h2>
                         <div class="post-meta align-items-center text-left clearfix">
                             <figure class="author-figure mb-0 me-3 float-start"><img src="{{ $post->user->image }}"
                                     alt="Image" class="img-fluid"></figure>

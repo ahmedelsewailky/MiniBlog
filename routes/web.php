@@ -23,3 +23,5 @@ Route::get('/', [WebsiteController::class, 'index'])->name('website');
 Route::get('/post/{slug}', [WebsiteController::class, 'post'])->name('post');
 
 Route::get('/category/{slug}', [WebsiteController::class, 'category']);
+
+Route::get('/search//', [WebsiteController::class, 'search']);

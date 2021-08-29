@@ -33,8 +33,8 @@
                         </li>
                         @endforeach
                     </ul>
-                    <form class="d-flex nav-search-form">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form action="{{ url('/search') }}" class="d-flex nav-search-form" method="GET">
+                        <input class="form-control me-2" type="search" placeholder="Search" name="search">
                         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
