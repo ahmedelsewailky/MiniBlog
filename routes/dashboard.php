@@ -18,13 +18,18 @@ Auth::routes();
 
 Route::group([
     'prefix' => 'panel',
-    'namespace' => 'App\Http\Controllers'
+    'namespace' => 'App\Http\Controllers',
+    'middleware' => ['auth'],
 ], function(){
 
     // Dashboard
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
     // Users
-    Route::resource('/users', 'UserController');
+    Route::resource('users', 'UserController');
+
+    // Roles
+    Route::resource('roles', RoleController::class);
+
 });
 

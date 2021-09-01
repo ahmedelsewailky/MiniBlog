@@ -106,16 +106,20 @@
                         </a>
                         <a href="pages.html" class="list-group-item">
                             <span class="fas fa-edit"></span> 
-                            Pages <span class="badge">12</span>
+                            Pages <span class="badge bg-secondary">12</span>
                         </a>
                         <a href="posts.html" class="list-group-item">
                             <span class="fas fa-pencil-alt"></span> 
                                 Posts 
-                                <span class="badge">33</span>
+                                <span class="badge bg-secondary">33</span>
                             </a>
                         <a href="{{ route('users.index') }}" class="list-group-item">
                             <span  class="fas fa-user"></span> Users <span
-                                class="badge">203</span></a>
+                                class="badge bg-secondary">203</span></a>
+                                
+                        <a href="{{ route('roles.index') }}" class="list-group-item">
+                            <span  class="fas fa-user"></span> Roles <span
+                                class="badge bg-secondary">203</span></a>
                     </div>
 
                     <div class="card mb-3 bg-light">

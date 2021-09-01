@@ -26,7 +26,7 @@ class PostFactory extends Factory
             'title' => $this->faker->unique()->text(75),
             'slug' => $this->faker->slug(),
             'category_id' => $this->faker->numberBetween(1,30),
-            'user_id' => $this->faker->numberBetween(1,5),
+            'user_id' => '1',
             'views' => $this->faker->numberBetween(9,2500),
             'article' => $this->faker->paragraph(100),
             'status' => true,
