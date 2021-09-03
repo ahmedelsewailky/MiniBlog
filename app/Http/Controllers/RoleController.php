@@ -31,7 +31,8 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $roles = Role::orderBy('id', 'DESC')->paginate(5);
-        return view('roles.index', compact('roles'))->with('i', ($request->input('page', 1) - 1) * 5);
+        $permissions = Permission::get();
+        return view('dashboard.roles.index', compact('roles', 'permissions'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -41,8 +42,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        $permission = Permission::get();
-        return view('roles.create', compact('permission'));
+        //
     }
 
     /**
