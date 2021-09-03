@@ -13,7 +13,10 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-                <a href="{{ route('roles.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i> Add new role</a>
+                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#create-role">
+                    <i class="fas fa-plus-circle"></i> 
+                    Add new role
+                </a>
             </div>
             <div class="col-md-6 text-end">
                 <input class="form-control" type="text" placeholder="Searching about role ...">
@@ -45,4 +48,7 @@
         </table>
     </div>
 </div>
+@endsection
+@section('modals')
+    @include('dashboard.roles.create')
 @endsection

@@ -19,7 +19,7 @@ Auth::routes();
 Route::group([
     'prefix' => 'panel',
     'namespace' => 'App\Http\Controllers',
-    'middleware' => ['auth'],
+    // 'middleware' => ['auth'],
 ], function(){
 
     // Dashboard
@@ -29,7 +29,7 @@ Route::group([
     Route::resource('users', 'UserController');
 
     // Roles
-    Route::resource('roles', RoleController::class);
+    Route::resource('roles', 'RoleController');
 
 });
 
