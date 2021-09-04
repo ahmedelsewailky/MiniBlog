@@ -120,6 +120,10 @@
                         <a href="{{ route('roles.index') }}" class="list-group-item">
                             <span  class="fas fa-user"></span> Roles <span
                                 class="badge bg-secondary">203</span></a>
+                                
+                        <a href="{{ route('permissions.index') }}" class="list-group-item">
+                            <span  class="fas fa-user"></span> Permissions <span
+                                class="badge bg-secondary">203</span></a>
                     </div>
 
                     <div class="card mb-3 bg-light">

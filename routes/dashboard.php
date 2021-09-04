@@ -31,5 +31,7 @@ Route::group([
     // Roles
     Route::resource('roles', 'RoleController');
 
+    // Permissions
+    Route::resource('permissions', 'PermissionController');
 });
 
