@@ -120,6 +120,10 @@
                         <a href="{{ route('categories.index') }}" class="list-group-item">
                             <span  class="fas fa-th-large"></span> Categories <span
                                 class="badge bg-secondary float-end">{{ App\Models\Category::all()->count() }}</span></a>
+
+                        <a href="{{ route('tags.index') }}" class="list-group-item">
+                            <span  class="fas fa-tags"></span> Tags <span
+                                class="badge bg-secondary float-end">{{ App\Models\Tag::all()->count() }}</span></a>
                                 
                         <a href="{{ route('roles.index') }}" class="list-group-item">
                             <span  class="fas fa-user-shield"></span> Roles <span

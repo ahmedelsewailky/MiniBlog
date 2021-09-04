@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -14,7 +15,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::orderBy('created_at', 'DESC')->paginate(5);
+        return view('dashboard.tags.index', compact('tags'));
     }
 
     /**
@@ -35,7 +37,14 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:tags,name',
+        ]);
+        Tag::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name)
+        ]);
+        return redirect()->route('tags.index')->with('success', 'Tag saved successfully');
     }
 
     /**
@@ -69,7 +78,13 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $request->validate([
+            'name' => "required|unique:tags,name, $tag->id"
+        ]);
+        $tag->name = $request->input('name');
+        $tag->slug = Str::slug($request->input('name'));
+        $tag->update();
+        return redirect()->route('tags.index')->with('success', 'Tag updated successfully');
     }
 
     /**
@@ -80,6 +95,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return redirect()->route('tags.index')->with('success', 'Tag deleted successfully');
     }
 }
