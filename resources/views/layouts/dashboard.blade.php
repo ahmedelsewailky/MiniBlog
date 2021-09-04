@@ -108,10 +108,10 @@
                             <span class="fas fa-edit"></span> 
                             Pages <span class="badge bg-secondary float-end">0</span>
                         </a>
-                        <a href="posts.html" class="list-group-item">
+                        <a href="{{ route('post.index') }}" class="list-group-item">
                             <span class="fas fa-pencil-alt"></span> 
                                 Posts 
-                                <span class="badge bg-secondary float-end">0</span>
+                                <span class="badge bg-secondary float-end">{{ App\Models\Post::all()->count() }}</span>
                             </a>
                         <a href="{{ route('users.index') }}" class="list-group-item">
                             <span  class="fas fa-user"></span> Users <span
@@ -174,6 +174,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="{{ asset('dashboard/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('dashboard/fonts/fontawesome/js/all.min.js') }}"></script>
+    @yield('custom-script')
 </body>
 
 </html>

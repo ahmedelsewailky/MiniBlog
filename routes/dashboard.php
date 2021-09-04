@@ -28,6 +28,9 @@ Route::group([
     // Users
     Route::resource('users', 'UserController');
 
+    // Posts
+    Route::resource('post', 'PostController');
+
     // Roles
     Route::resource('roles', 'RoleController');
 
