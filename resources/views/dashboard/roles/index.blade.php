@@ -13,7 +13,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#create-role">
+                <a href="{{ route('roles.create') }}" class="btn btn-sm btn-primary">
                     <i class="fas fa-plus-circle"></i> 
                     Add new role
                 </a>
@@ -23,6 +23,7 @@
             </div>
         </div>
         <br>
+        @include('layouts.alert')
         <table class="table table-striped table-hover">
             <tr>
                 <th>#</th>
@@ -48,7 +49,4 @@
         </table>
     </div>
 </div>
-@endsection
-@section('modals')
-    @include('dashboard.roles.create')
 @endsection

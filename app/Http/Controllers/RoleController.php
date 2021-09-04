@@ -31,8 +31,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $roles = Role::orderBy('id', 'DESC')->paginate(5);
-        $permissions = Permission::get();
-        return view('dashboard.roles.index', compact('roles', 'permissions'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('dashboard.roles.index', compact('roles'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -42,7 +41,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $permissions = Permission::get();
+        return view('dashboard.roles.create', compact('permissions'));
     }
 
     /**
@@ -83,14 +83,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        $role = Role::find($id);
-        $permission = Permission::get();
-        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $id)
+        $permissions = Permission::get();
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $role->id)
             ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
             ->all();
-        return view('roles.edit', compact('role', 'permission', 'rolePermissions'));
+        return view('dashboard.roles.edit', compact('role', 'permissions', 'rolePermissions'));
     }
 
     /**
@@ -119,9 +118,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        DB::table("roles")->where('id', $id)->delete();
+        $role->delete();
         return redirect()->route('roles.index')
             ->with('success', 'Role deleted successfully');
     }

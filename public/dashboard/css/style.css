@@ -185,3 +185,7 @@ body {
     color: #555;
     font-size: 15px;
 }
+
+.form-label {
+    font-weight: bold;
+}
