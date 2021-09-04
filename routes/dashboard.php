@@ -31,6 +31,12 @@ Route::group([
     // Posts
     Route::resource('post', 'PostController');
 
+    // Categories
+    Route::resource('categories', 'CategoryController');
+
+    // Tags
+    Route::resource('tags', 'TagController');
+
     // Roles
     Route::resource('roles', 'RoleController');
 
