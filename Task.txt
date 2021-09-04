@@ -12,3 +12,7 @@
 
 
 ## Overview about index dashboard
+
+- Notifications
+- Activities
+- Charts
