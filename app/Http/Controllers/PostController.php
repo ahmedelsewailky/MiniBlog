@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Post;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -25,7 +30,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('dashboard.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -36,7 +43,32 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|unique:posts,title',
+            'image' => 'required|mimes:png,jpg,jpeg',
+            'article' => 'required',
+            'tags' => 'required'
+        ]);
+        // Handling post image firstly
+        $image = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('dashboard/images/posts'), $image);
+        $image = '/dashboard/images/posts/'. $image;
+
+        $data = [
+            'title' => $request->input('title'),
+            'slug' => Str::slug($request->input('title')),
+            'image' => $image,
+            'article' => $request->input('article'),
+            'status' => $request->input('status'),
+            'category_id' => $request->input('category'),
+            'user_id' => Auth::user()->id,
+            'views' => 0
+        ];
+
+        $post = Post::create($data);
+        $post->tags()->attach($request->input('tags'));
+
+        return redirect()->route('post.index')->with('success', 'Post created successfully');
     }
 
     /**
@@ -58,7 +90,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('dashboard.posts.edit', compact('post'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('dashboard.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -70,7 +104,37 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => "required|unique:posts,title, $post->id",
+            'image' => 'mimes:png,jpg,jpeg',
+            'article' => 'required',
+            'tags' => 'required'
+        ]);
+
+        // Handling post image firstly
+        if ($request->has('image')) {
+            File::delete(public_path($post->image));
+            $image = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('dashboard/images/posts'), $image);
+            $image = '/dashboard/images/posts/' . $image;
+        } else {
+            $image = $post->image;
+        }
+
+        $data = [
+            'title' => $request->input('title'),
+            'slug' => Str::slug($request->input('title')),
+            'image' => $image,
+            'article' => $request->input('article'),
+            'status' => $request->input('status'),
+            'category_id' => $request->input('category'),
+            'user_id' => Auth::user()->id
+        ];
+
+        $post->update($data);
+        $post->tags()->sync($request->input('tags'));
+        
+        return redirect()->route('post.index')->with('success', 'Post updated successfully');
     }
 
     /**
@@ -81,6 +145,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        File::delete(public_path($post->image));
+        $post->delete();
+        return redirect()->route('post.index')->with('success', 'Post removed successfully');
     }
 }

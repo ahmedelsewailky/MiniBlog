@@ -10,7 +10,7 @@
     <link href="{{ asset('dashboard') }}/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('dashboard') }}/fonts/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('dashboard') }}/css/style.css" rel="stylesheet">
-    <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+    @yield('custom_css')
 </head>
 
 <body>

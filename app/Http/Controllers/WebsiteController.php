@@ -18,9 +18,9 @@ class WebsiteController extends Controller
 
     public function index()
     {
-        $latest_posts = Post::latest()->take(5)->get();
-        $recent_posts = Post::orderBy('created_at', 'DESC')->paginate(9);
-        $recomended_posts = Post::orderBy('views', 'DESC')->take(4)->get();
+        $latest_posts = Post::latest()->where('status', '1')->take(5)->get();
+        $recent_posts = Post::where('status', '1')->orderBy('created_at', 'DESC')->paginate(9);
+        $recomended_posts = Post::where('status', '1')->orderBy('views', 'DESC')->take(4)->get();
 
         return view('website.index', compact([
             'latest_posts',
