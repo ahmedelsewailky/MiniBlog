@@ -31,17 +31,19 @@
                 <td>
                     <div class="d-flex">
                         <a class="btn btn-sm btn-success me-2" href="{{ route('permissions.edit', $permission->id) }}"><i class="fas fa-edit"></i> Edit</a> 
-                        <form action="{{ route('permissions.destroy', $permission->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
-                        </form>
+                        <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#permission-{{ $permission->id }}">
+                            <i class="fas fa-trash"></i> 
+                            Delete
+                        </a>
                     </div>
                 </td>
             </tr>
+            @include('dashboard.permissions.confirm')
             @endforeach
         </table>
-        {{ $permissions->links('vendor.pagination.bootstrap-4') }}
+        <div class="d-flex justify-content-end">
+            {{ $permissions->links('vendor.pagination.bootstrap-4') }}
+        </div>
     </div>
 </div>
 @endsection

@@ -37,14 +37,14 @@
                 <td>
                     <div class="d-flex">
                         <a class="btn btn-sm btn-success me-2" href="{{ route('users.edit', $user->id) }}"><i class="fas fa-edit"></i> Edit</a> 
-                        <form action="{{ route('users.destroy', $user->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
-                        </form>
+                        <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#user-{{ $user->id }}">
+                            <i class="fas fa-trash"></i> 
+                            Delete
+                        </a>
                     </div>
                 </td>
             </tr>
+            @include('dashboard.users.confirm')
             @endforeach
         </table>
     </div>
