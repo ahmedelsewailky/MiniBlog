@@ -14,7 +14,7 @@
         <div class="links py-3 mb-3 d-flex justify-content-lg-end">
             <a href="{{ route('post', $post->slug) }}" target="_blank" class="btn btn-sm btn-dark"><i class="fas fa-eye"></i> Go to link</a>
             <a href="{{ route('post.edit', $post->id) }}" class="btn btn-sm btn-success mx-2"><i class="fas fa-edit"></i> Edit</a>
-            <a href="{{ route('post.destroy', $post->id) }}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</a>
+            <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#post-{{ $post->id }}"><i class="fas fa-trash"></i> Delete</a>
         </div>
         <table class="table table-striped">
             <tbody>
@@ -66,4 +66,5 @@
         </table>
     </div>
 </div>
+@include('dashboard.posts.confirm')
 @endsection
