@@ -20,6 +20,7 @@
             </div>
         </div>
         <br>
+        @include('layouts.alert')
         <table class="table table-striped table-hover">
             <tr>
                 <th>#</th>
