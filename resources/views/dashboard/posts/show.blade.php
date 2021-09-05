@@ -32,7 +32,11 @@
                 </tr>
                 <tr>
                     <th>Tags</th>
-                    <td>laravel</td>
+                    <td>
+                    @foreach ($post->tags as $tag)
+                        <span class="badge bg-secondary">{{ $tag->name }}</span>    
+                    @endforeach
+                    </td>
                 </tr>
                 <tr>
                     <th>Author</th>

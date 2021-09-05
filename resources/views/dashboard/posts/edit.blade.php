@@ -77,9 +77,10 @@
                         <div class="col-md-2">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="{{ $tag->id }}" name="tags[]"
-                                    id="tag-{{ $tag->id }}" @foreach ($post->tags as $t)
-                                @if ($tag->id == $t->id) checked @endif
-                                @endforeach
+                                    id="tag-{{ $tag->id }}" 
+                                    @foreach ($post->tags as $t)
+                                        @if ($tag->id == $t->id) checked="checked" @endif
+                                    @endforeach
                                 >
                                 <label class="form-check-label" for="tag-{{ $tag->id }}" style="cursor: pointer">
                                     {{ $tag->name }}

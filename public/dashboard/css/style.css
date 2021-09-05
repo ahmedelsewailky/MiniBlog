@@ -186,9 +186,13 @@ body {
     font-size: 15px;
 }
 
-label, .form-label {
-    font-weight: bold;
+label,
+.form-label {
     cursor: pointer;
+}
+
+.form-label {
+    font-weight: bold;
 }
 
 .post-image-preview {
@@ -220,10 +224,11 @@ label, .form-label {
     opacity: 0;
     transition: all 0.3s;
 }
-.post-image-preview:hover:before  {
-    opacity: 1;
-}
-.post-image-preview:hover:after {
+
+.post-image-preview:hover:before {
     opacity: 1;
 }
 
+.post-image-preview:hover:after {
+    opacity: 1;
+}
