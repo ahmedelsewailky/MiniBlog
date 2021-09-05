@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use App\Notifications\PostNotification; 
 
 class PostController extends Controller
 {
@@ -133,6 +135,11 @@ class PostController extends Controller
 
         $post->update($data);
         $post->tags()->sync($request->input('tags'));
+
+        $user = User::find(Auth::user()->id);
+        $notify = new PostNotification($post);
+        $notify->setDescription('has updated his article');
+        $user->notify($notify);
         
         return redirect()->route('post.index')->with('success', 'Post updated successfully');
     }

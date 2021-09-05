@@ -20,8 +20,8 @@
         <div class="container">
             <a class="navbar-brand" href="#">AdminStrap</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -33,14 +33,51 @@
                         <a class="nav-link" href="#">Pages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Posts</a>
+                        <a class="nav-link" href="{{ route('post.index') }}">Posts</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}">Users</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Welcome, {{ Str::ucfirst(Auth::user()->name) }}</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            @if (count(auth()->user()->unreadNotifications) > 0)
+                                @foreach (auth()->user()->unreadNotifications as $notification)
+                                <li>
+                                    <div class="d-flex dropdown-item">
+                                        <div class="flex-shrink-0">
+                                            <img src="{{ $notification->data['image'] }}" alt="..." width="60" height="60">
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <span class="fw-bold">{{ $notification->notifiable->name }}</span>
+                                            <span>{{ $notification->data['description'] }}</span> <br>
+                                            <a href="">{{ Str::limit($notification->data['title'], 35) }}</a>
+                                            <p class="meta-date mb-0" style="font-size: 13px">
+                                                <span class="text-danger"><em>{{ $notification->created_at->diffForHumans() }}</em></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li class="text-end px-3">
+                                    <a href="" class="btn btn-sm btn-primary">Mark all as read</a>
+                                </li>
+                                @endforeach
+                            @else
+                                <li>
+                                    <p class="dropdown-item mb-0">There is no notification</p>   
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Welcome,
+                            {{ Str::ucfirst(Auth::user()->name) }}</a></li>
                     <li class="nav-item">
                         <a class="nav-link" class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
@@ -105,32 +142,32 @@
                             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Dashboard
                         </a>
                         <a href="pages.html" class="list-group-item">
-                            <span class="fas fa-edit"></span> 
+                            <span class="fas fa-edit"></span>
                             Pages <span class="badge bg-secondary float-end">0</span>
                         </a>
                         <a href="{{ route('post.index') }}" class="list-group-item">
-                            <span class="fas fa-pencil-alt"></span> 
-                                Posts 
-                                <span class="badge bg-secondary float-end">{{ App\Models\Post::all()->count() }}</span>
-                            </a>
+                            <span class="fas fa-pencil-alt"></span>
+                            Posts
+                            <span class="badge bg-secondary float-end">{{ App\Models\Post::all()->count() }}</span>
+                        </a>
                         <a href="{{ route('users.index') }}" class="list-group-item">
-                            <span  class="fas fa-user"></span> Users <span
+                            <span class="fas fa-user"></span> Users <span
                                 class="badge bg-secondary float-end">{{ App\Models\User::all()->count() }}</span></a>
 
                         <a href="{{ route('categories.index') }}" class="list-group-item">
-                            <span  class="fas fa-th-large"></span> Categories <span
+                            <span class="fas fa-th-large"></span> Categories <span
                                 class="badge bg-secondary float-end">{{ App\Models\Category::all()->count() }}</span></a>
 
                         <a href="{{ route('tags.index') }}" class="list-group-item">
-                            <span  class="fas fa-tags"></span> Tags <span
+                            <span class="fas fa-tags"></span> Tags <span
                                 class="badge bg-secondary float-end">{{ App\Models\Tag::all()->count() }}</span></a>
-                                
+
                         <a href="{{ route('roles.index') }}" class="list-group-item">
-                            <span  class="fas fa-user-shield"></span> Roles <span
+                            <span class="fas fa-user-shield"></span> Roles <span
                                 class="badge bg-secondary float-end">{{ Spatie\Permission\Models\Role::all()->count() }}</span></a>
-                                
+
                         <a href="{{ route('permissions.index') }}" class="list-group-item">
-                            <span  class="fas fa-exclamation-circle"></span> Permissions <span
+                            <span class="fas fa-exclamation-circle"></span> Permissions <span
                                 class="badge bg-secondary float-end">{{ Spatie\Permission\Models\Permission::all()->count() }}</span></a>
                     </div>
 
