@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         // Define Schema String Length
         Schema::defaultStringLength(191);
 
-        // Sharing Categories
+        // // Sharing Categories
         $categories = Category::take(6)->get();
         View::share('categories', $categories);
 
