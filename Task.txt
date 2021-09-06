@@ -16,3 +16,8 @@
 - Notifications
 - Activities
 - Charts
+- Users email Posts newsletter
+- Users modify table
+- Messages
+- Ads
+

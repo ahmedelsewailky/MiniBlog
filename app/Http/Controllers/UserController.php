@@ -45,9 +45,16 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'image' => 'required|mimes:png,jpg,jpeg',
+            'mobile' => 'required',
+            'address' => 'required',
+            'salary' => 'required',
+            'fname' => 'required',
+            'lname' => 'required',
         ]);
         $input = $request->all();
+        return $input;
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
