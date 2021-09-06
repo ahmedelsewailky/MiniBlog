@@ -50,6 +50,6 @@ Route::group([
     Route::get('/mark/{post_id}', 'NotificationController@markAsRead');
 
     // Display all notifications
-    Route::get('/notifications', 'NotificationController@index');
+    Route::get('/notifications', 'NotificationController@index')->name('notifications');
 });
 

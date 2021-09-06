@@ -75,7 +75,7 @@
                             <!-- menu head -->
                             <li class="dropdown-menu-header">
                                 <span>Notifications</span>
-                                <a href="{{ url('/panel/notifications') }}">Mark all as read</a>
+                                <a href="{{ url('/panel/notifications') }}" @if (count(auth()->user()->unreadNotifications) == 0)  class="d-none" @endif>Mark all as read</a>
                             </li>
 
                             <!-- custome for un read notifications -->
@@ -251,7 +251,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{{ asset('dashboard/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('dashboard/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('dashboard/fonts/fontawesome/js/all.min.js') }}"></script>
     @yield('custom-script')
