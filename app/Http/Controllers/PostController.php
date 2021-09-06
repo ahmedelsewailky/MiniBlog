@@ -70,6 +70,11 @@ class PostController extends Controller
         $post = Post::create($data);
         $post->tags()->attach($request->input('tags'));
 
+        $user = User::find(Auth::user()->id);
+        $notify = new PostNotification($post);
+        $notify->setDescription('has create a new post');
+        $user->notify($notify);
+
         return redirect()->route('post.index')->with('success', 'Post created successfully');
     }
 

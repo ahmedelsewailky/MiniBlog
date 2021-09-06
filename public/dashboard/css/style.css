@@ -232,3 +232,61 @@ label,
 .post-image-preview:hover:after {
     opacity: 1;
 }
+
+.notif-count {
+    background-color: #f9e36c;
+    width: 16px;
+    height: 15px;
+    font-size: 11px;
+    position: absolute;
+    text-align: center;
+    border-radius: 100%;
+    padding: 0px;
+    color: #222;
+    left: -5px;
+    top: 5px;
+}
+
+.dropdown-menu.show {
+    padding: 0;
+}
+
+.dropdown-menu-header {
+    background-color: #3c77e7;
+    color: white;
+    padding: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    overflow: hidden;
+}
+
+.dropdown-menu-header a {
+    font-size: 13px;
+    float: right;
+    color: white;
+}
+
+.dropdown-menu-header span {
+    font-weight: bold;
+    text-align: left;
+    margin-right: auto;
+    display: block;
+    font-size: 22px;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+    color: #1e2125;
+    background-color: transparent;
+}
+
+.d-flex.dropdown-item {
+    font-size: 14px;
+}
+
+.dropdown-menu-footer {
+    background-color: whitesmoke;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    text-align: right;
+}

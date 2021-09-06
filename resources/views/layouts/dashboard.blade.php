@@ -6,10 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name') }} | @yield('title')</title>
+
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('dashboard') }}/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesone -->
     <link href="{{ asset('dashboard') }}/fonts/fontawesome/css/all.min.css" rel="stylesheet">
+
+    <!-- Style Sheet -->
     <link href="{{ asset('dashboard') }}/css/style.css" rel="stylesheet">
+
+    <!-- Custome style sheet for spesific page -->
     @yield('custom_css')
 </head>
 
@@ -18,13 +25,21 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-default">
         <div class="container">
+
+            <!-- Brand -->
             <a class="navbar-brand" href="#">AdminStrap</a>
+
+            <!-- Toggle button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <!-- Menu -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- LTR: left menu -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
@@ -39,45 +54,65 @@
                         <a class="nav-link" href="{{ route('users.index') }}">Users</a>
                     </li>
                 </ul>
+
+                <!-- LTR: right menu -->
                 <ul class="navbar-nav">
 
+
+                    <!-- Notifications menu -->
                     <li class="nav-item dropdown">
+                        <!-- span counter + envelope icon -->
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
+                            @if (count(auth()->user()->unreadNotifications) > 0)
+                            <span class="notif-count">{{ count(Auth()->user()->unreadNotifications) }}</span>
+                            @endif
                             <i class="fas fa-envelope"></i>
                         </a>
+
+                        <!-- Notification menu -->
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            @if (count(auth()->user()->unreadNotifications) > 0)
-                                @foreach (auth()->user()->unreadNotifications as $notification)
-                                <li>
-                                    <div class="d-flex dropdown-item">
-                                        <div class="flex-shrink-0">
-                                            <img src="{{ $notification->data['image'] }}" alt="..." width="60" height="60">
-                                        </div>
-                                        <div class="flex-grow-1 ms-3">
-                                            <span class="fw-bold">{{ $notification->notifiable->name }}</span>
-                                            <span>{{ $notification->data['description'] }}</span> <br>
-                                            <a href="">{{ Str::limit($notification->data['title'], 35) }}</a>
-                                            <p class="meta-date mb-0" style="font-size: 13px">
-                                                <span class="text-danger"><em>{{ $notification->created_at->diffForHumans() }}</em></span>
-                                            </p>
-                                        </div>
+                            <!-- menu head -->
+                            <li class="dropdown-menu-header">
+                                <span>Notifications</span>
+                                <a href="{{ url('/panel/notifications') }}">Mark all as read</a>
+                            </li>
+
+                            <!-- custome for un read notifications -->
+                            @foreach (auth()->user()->notifications->take(5) as $notify)
+                            <li>
+                                <div class="d-flex dropdown-item" @if ($notify->read_at === NULL) style="background-color: #eeebeb" @endif>
+                                    <div class="flex-shrink-0">
+                                        <img src="@if (!File::exists(public_path($notify->data['image']))) https://shahidafridifoundation.org/wp-content/uploads/2020/06/no-preview.jpg @else {{$notify->data['image']}} @endif" alt="..." width="60" height="60">
                                     </div>
-                                </li>
-                                <li class="dropdown-divider"></li>
-                                <li class="text-end px-3">
-                                    <a href="" class="btn btn-sm btn-primary">Mark all as read</a>
-                                </li>
-                                @endforeach
-                            @else
-                                <li>
-                                    <p class="dropdown-item mb-0">There is no notification</p>   
-                                </li>
-                            @endif
+                                    <div class="flex-grow-1 ms-3">
+                                        <span class="fw-bold">{{ Str::ucfirst($notify->notifiable->name) }}</span>
+                                        <span>{{ $notify->data['description'] }}</span> <br>
+                                        <a
+                                            href="{{ url('/panel/mark', $notify->data['id']) }}">{{ Str::limit($notify->data['title'], 35) }}</a>
+                                        <p class="meta-date mb-0" style="font-size: 13px">
+                                            <span
+                                                class="text-danger"><em>{{ $notify->created_at->diffForHumans() }}</em></span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforeach
+
+                            <!-- menu footer -->
+                            <li class="dropdown-menu-footer">
+                                <a href="{{ url('/panel/notifications') }}">Reviews all notifications</a>
+                            </li>
                         </ul>
                     </li>
+
+
+                    <!-- Welcome message -->
                     <li class="nav-item"><a class="nav-link" href="#">Welcome,
                             {{ Str::ucfirst(Auth::user()->name) }}</a></li>
+
+
+                    <!-- Logout buttons -->
                     <li class="nav-item">
                         <a class="nav-link" class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">

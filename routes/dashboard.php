@@ -42,5 +42,14 @@ Route::group([
 
     // Permissions
     Route::resource('permissions', 'PermissionController');
+
+    // Mark all notification as read
+    Route::get('/markall', 'NotificationController@markAll');
+
+    // Mark select notification as read
+    Route::get('/mark/{post_id}', 'NotificationController@markAsRead');
+
+    // Display all notifications
+    Route::get('/notifications', 'NotificationController@index');
 });
 
