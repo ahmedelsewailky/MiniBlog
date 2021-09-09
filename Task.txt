@@ -4,14 +4,6 @@
 - Advertisment Page Goto Contact Page
 
 
-## Cruds
-- Category
-- Tags
-- Posts
-- Users
-
-
-## Overview about index dashboard
 
 - Notifications
 - Activities
