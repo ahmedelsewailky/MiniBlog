@@ -180,30 +180,48 @@
                             <span class="fas fa-edit"></span>
                             Pages <span class="badge bg-secondary float-end">0</span>
                         </a>
+                        @can('post-list')
                         <a href="{{ route('post.index') }}" class="list-group-item">
                             <span class="fas fa-pencil-alt"></span>
                             Posts
                             <span class="badge bg-secondary float-end">{{ App\Models\Post::all()->count() }}</span>
                         </a>
+                        @endcan
+
+
+                        @can('user-list')
                         <a href="{{ route('users.index') }}" class="list-group-item">
                             <span class="fas fa-user"></span> Users <span
                                 class="badge bg-secondary float-end">{{ App\Models\User::all()->count() }}</span></a>
+                        @endcan
 
+
+                        @can('category-list')
                         <a href="{{ route('categories.index') }}" class="list-group-item">
                             <span class="fas fa-th-large"></span> Categories <span
                                 class="badge bg-secondary float-end">{{ App\Models\Category::all()->count() }}</span></a>
+                        @endcan
 
+
+                        @can('tag-list')
                         <a href="{{ route('tags.index') }}" class="list-group-item">
                             <span class="fas fa-tags"></span> Tags <span
                                 class="badge bg-secondary float-end">{{ App\Models\Tag::all()->count() }}</span></a>
+                        @endcan
 
+
+                        @can('role-list')
                         <a href="{{ route('roles.index') }}" class="list-group-item">
                             <span class="fas fa-user-shield"></span> Roles <span
                                 class="badge bg-secondary float-end">{{ Spatie\Permission\Models\Role::all()->count() }}</span></a>
+                        @endcan
 
+
+                        @can('permission-list')
                         <a href="{{ route('permissions.index') }}" class="list-group-item">
                             <span class="fas fa-exclamation-circle"></span> Permissions <span
                                 class="badge bg-secondary float-end">{{ Spatie\Permission\Models\Permission::all()->count() }}</span></a>
+                        @endcan
                     </div>
 
                     <div class="card mb-3 bg-light">

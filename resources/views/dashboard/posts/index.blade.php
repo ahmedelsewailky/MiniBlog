@@ -13,7 +13,9 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
+                @can('post-create')
                 <a href="{{ route('post.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i> Create new post</a>
+                @endcan
             </div>
             <div class="col-md-6 text-end">
                 <input class="form-control" type="text" placeholder="Searching for post...">
@@ -52,8 +54,12 @@
                 <td>{{ $post->comments->count() }}</td>
                 <td>
                     <div class="d-flex">
+                        @can('post-edit')
                         <a class="btn btn-sm btn-success me-2" href="{{ route('post.edit', $post->id) }}"><i class="fas fa-edit"></i></a> 
+                        @endcan
+                        @can('post-delete')
                         <a class="btn btn-sm btn-primary me-2" href="{{ route('post.show', $post->id) }}"><i class="fas fa-eye"></i></a> 
+                        @endcan
                     </div>
                 </td>
             </tr>

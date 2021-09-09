@@ -1,3 +1,4 @@
+
 @extends('layouts.dashboard')
 @section('title', 'Users')
 @section('breadcrumbs')
@@ -13,7 +14,9 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
+                @can('user-create')
                 <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus-circle"></i> Add new user</a>
+                @endcan
             </div>
             <div class="col-md-6 text-end">
                 <input class="form-control" type="text" placeholder="Filter Users...">
@@ -43,11 +46,16 @@
                 </td>
                 <td>
                     <div class="d-flex">
+                        @can('user-edit')
                         <a class="btn btn-sm btn-success me-2" href="{{ route('users.edit', $user->id) }}"><i class="fas fa-edit"></i> Edit</a> 
+                        @endcan
+                        @can('user-delete')
                         <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#user-{{ $user->id }}">
                             <i class="fas fa-trash"></i> 
                             Delete
                         </a>
+                        @endcan
+
                     </div>
                 </td>
             </tr>
@@ -57,3 +65,4 @@
     </div>
 </div>
 @endsection
+

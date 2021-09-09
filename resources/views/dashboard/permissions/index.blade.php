@@ -17,7 +17,6 @@
                 Add new permission
             </a>
         </div>
-        @include('layouts.alert')
         <table class="table table-striped table-hover">
             <tr>
                 <th>#</th>

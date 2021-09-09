@@ -13,7 +13,9 @@
         <div class="card-header main-color-bg">
             Create new permission
         </div>
+        
         <div class="card-body">
+            @include('layouts.alert')
             <div class="form-group mb-4">
                 <label for="name" class="form-label">Permission name</label>
                 <input id="name" class="form-control" type="text" name="name" placeholder="Permission name">

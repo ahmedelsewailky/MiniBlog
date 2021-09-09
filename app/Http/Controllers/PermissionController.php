@@ -12,6 +12,19 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+        $this->middleware('permission:permission-list|permission-create|permission-edit|permission-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:permission-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:permission-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:permission-delete', ['only' => ['destroy']]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index(Request $request)
     {
         $permissions = Permission::orderBy('created_at', 'DESC')->paginate(5);
@@ -43,7 +56,7 @@ class PermissionController extends Controller
         Permission::create([
             'name' => $request->input('name')
         ]);
-        return redirect()->route('permissions.index')
+        return redirect()->route('permissions.create')
             ->with('success', 'Permission created successfully');
     }
 

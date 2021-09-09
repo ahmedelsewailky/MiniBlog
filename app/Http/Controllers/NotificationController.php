@@ -6,6 +6,18 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    function __construct()
+    {
+        $this->middleware('permission:notification-list|notification-create|notification-edit|notification-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:notification-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:notification-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:notification-delete', ['only' => ['destroy']]);
+    }
 
     /**
      * Get all notification about post actions within table list
