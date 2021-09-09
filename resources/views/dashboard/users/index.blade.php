@@ -20,12 +20,13 @@
             </div>
         </div>
         <br>
+        @include('layouts.alert')
         <table class="table table-striped table-hover">
             <tr>
                 <th>Image</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Joined</th>
+                <th>Roles</th>
                 <th></th>
             </tr>
             @foreach ($users as $user)
@@ -33,7 +34,13 @@
                 <td><img src="{{ $user->image }}" alt="user image" width="50" height="50"></td>
                 <td>{{ Str::ucfirst($user->name) }}</td>
                 <td>{{ $user->email }}</td>
-                <td>{{ $user->created_at->format('M D, Y') }}</td>
+                <td>
+                    @if(!empty($user->getRoleNames()))
+                        @foreach($user->getRoleNames() as $v)
+                        {{ $v }}
+                        @endforeach
+                    @endif
+                </td>
                 <td>
                     <div class="d-flex">
                         <a class="btn btn-sm btn-success me-2" href="{{ route('users.edit', $user->id) }}"><i class="fas fa-edit"></i> Edit</a> 

@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -29,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name', 'name')->all();
+        $roles = Role::all();
         return view('dashboard.users.create', compact('roles'));
     }
 
@@ -44,7 +45,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
+            'password' => 'required|confirmed',
             'roles' => 'required',
             'image' => 'required|mimes:png,jpg,jpeg',
             'mobile' => 'required',
@@ -53,9 +54,14 @@ class UserController extends Controller
             'fname' => 'required',
             'lname' => 'required',
         ]);
-        $input = $request->all();
-        return $input;
+
+        $image = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('dashboard/images/users'), $image);
+        $image = '/dashboard/images/users/' . $image;
+
+        $input = $request->except(['password_confirmation', 'roles']);
         $input['password'] = Hash::make($input['password']);
+        $input['image'] = $image;
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
         return redirect()->route('users.index')->with('success', 'User created successfully');
@@ -97,12 +103,29 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'mobile' => 'required',
+            'address' => 'required',
+            'salary' => 'required',
+            'fname' => 'required',
+            'lname' => 'required',
         ]);
-
-        $input = $request->all();
-        if (!empty($input['password'])) {
+        $input = $request->except(['password_confirmation', 'roles']);
+        if ($request->has('image')) {
+            $request->validate([
+                'image' => 'mimes:png,jpg,jpeg',
+            ]);
+            File::delete(public_path($user->image));
+            $image = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('dashboard/images/users'), $image);
+            $input['image'] = '/dashboard/images/users/' . $image;
+        }else {
+            $input['image'] = $user->image;
+        }
+        if (!$request->has('password')) {
+            $request->validate([
+                'password' => 'required|confirmed'
+            ]);
             $input['password'] = Hash::make($input['password']);
         } else {
             $input = Arr::except($input, array('password'));
@@ -121,6 +144,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        File::delete(public_path($user->image));
         $user->delete();
         return redirect()->route('users.index')->with('success', 'User deleted successfully');
     }

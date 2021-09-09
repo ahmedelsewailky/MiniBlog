@@ -2,7 +2,7 @@
 <div class="modal fade" id="user-{{ $user->id }}">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="{{ route('roles.destroy', $user->id) }}" method="POST">
+            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <div class="modal-header">
