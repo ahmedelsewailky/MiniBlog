@@ -222,6 +222,13 @@
                             <span class="fas fa-exclamation-circle"></span> Permissions <span
                                 class="badge bg-secondary float-end">{{ Spatie\Permission\Models\Permission::all()->count() }}</span></a>
                         @endcan
+
+
+                        {{-- @can('permission-list') --}}
+                        <a href="{{ url('/panel/subscribers') }}" class="list-group-item">
+                            <span class="fas fa-users"></span> Subscribers <span
+                                class="badge bg-secondary float-end">{{ App\Models\Subscribers::all()->count() }}</span></a>
+                        {{-- @endcan --}}
                     </div>
 
                     <div class="card mb-3 bg-light">

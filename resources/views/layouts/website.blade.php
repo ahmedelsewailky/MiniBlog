@@ -17,6 +17,9 @@
 <body>
 
     <div class="site-wrap">
+        @if (Session::has('success'))
+            <div class="success-subscribing">{{ Session::get('success') }}</div>
+        @endif
         <nav class="navbar site-navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('website') }}"><span class="text-orange">Mini</span>Blog</a>
@@ -54,8 +57,9 @@
                             <h2>Subscribe to our newsletter</h2>
                             <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit nesciunt
                                 error illum a explicabo, ipsam nostrum.</p>
-                            <form action="#" class="d-flex">
-                                <input type="text" class="form-control" placeholder="Enter your email address">
+                            <form action="{{ url('/panel/subscribers') }}" method="POST" class="d-flex">
+                                @csrf
+                                <input type="email" class="form-control" name="email" placeholder="Enter your email address">
                                 <input type="submit" class="btn btn-primary" value="Subscribe">
                             </form>
                         </div>

@@ -28,6 +28,10 @@ Route::group([
     // Users
     Route::resource('users', 'UserController');
 
+    // Subscribers
+    Route::get('subscribers', 'DashboardController@subscribers');
+    Route::post('subscribers', 'DashboardController@addSubscriber')->name('subscriber.add');
+
     // Posts
     Route::resource('post', 'PostController');
 

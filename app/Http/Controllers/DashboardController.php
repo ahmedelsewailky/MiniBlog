@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Setting;
+use App\Models\Subscribers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -43,5 +44,23 @@ class DashboardController extends Controller
         }
         $data['chart_data'] = json_encode($data);
         return view('dashboard.index', compact(['users', 'posts', 'setting', 'data']));
+    }
+
+
+    public function subscribers()
+    {
+        $subscribers = Subscribers::orderBy('created_at', 'DESC')->paginate(10);
+        return view('dashboard.subscribers.index', compact('subscribers'));
+    }
+
+    public function addSubscriber(Request $request)
+    {
+        $request->validate([
+            'email' => 'email|required|unique:subscribers,email'
+        ]);
+        Subscribers::create([
+            'email' => $request->email
+        ]);
+        return redirect()->route('website')->with('success', 'Done!');
     }
 }

@@ -1471,3 +1471,18 @@ h5,
 .search-form-wrap form .form-control {
     border: none;
 }
+.success-subscribing {
+    position: absolute;
+    z-index: 9999;
+    background-color: black;
+    color: white;
+    width: 250px;
+    height: 250px;
+    line-height: 250px;
+    text-align: center;
+    font-size: 35px;
+    border-radius: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
