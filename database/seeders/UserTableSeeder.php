@@ -17,9 +17,9 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'name' => 'ahmed',
-            'email' => 'ahmed@yahoo.com',
-            'password' => bcrypt('123456'),
+            'name' => 'admin',
+            'email' => 'admin@yahoo.com',
+            'password' => bcrypt('admin'),
             'bio' => 'Ahmed mohammed sayed, lorem ipsum dollar is a dummy text for testing',
             'image' => 'https://pbs.twimg.com/media/ElczV6cXIAAmZl5.jpg',
             'social' => [
@@ -38,6 +38,6 @@ class UserTableSeeder extends Seeder
         $permissions = Permission::pluck('id', 'id')->all();
         $role->syncPermissions($permissions);
         $user->assignRole([$role->id]);
-        
+
     }
 }
