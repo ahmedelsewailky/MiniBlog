@@ -28,15 +28,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Define Schema String Length
-        Schema::defaultStringLength(191);
+        
+        if (!app()->runningInConsole()) {
+            // Define Schema String Length
+            Schema::defaultStringLength(191);
+            // // Sharing Categories
+            $categories = Category::take(6)->get();
+            View::share('categories', $categories);
+            // Sharing Settings
+            $setting = Setting::all()->first();
+            View::share('setting', $setting);
+        }
 
-        // // Sharing Categories
-        $categories = Category::take(6)->get();
-        View::share('categories', $categories);
-
-        // Sharing Settings
-        $setting = Setting::all()->first();
-        View::share('setting', $setting);
     }
 }
