@@ -25,7 +25,7 @@ class UserTableSeeder extends Seeder
             'social' => [
                 'facebook' => 'https://facebook.com/ahmedelsewailky',
                 'twitter' => 'https://twitter.com/elsewailky',
-                'youtube' => 'https://youtube.com/ahmedelsewailky'
+                'github' => 'https://github.com/ahmedelsewailky'
             ],
             'mobile' => '01234567890',
             'address' => 'Egypt, Cairo',

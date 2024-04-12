@@ -71,7 +71,7 @@
                             <p class="social">
                                 <a href="{{ $post->user->social['facebook'] }}" target="_blank" class="p-2"><span class="fab fa-facebook"></span></a>
                                 <a href="{{ $post->user->social['twitter'] }}" target="_blank" class="p-2"><span class="fab fa-twitter"></span></a>
-                                <a href="{{ $post->user->social['instagram'] }}" target="_blank" class="p-2"><span class="fab fa-instagram"></span></a>
+                                <a href="{{ $post->user->social['github'] }}" target="_blank" class="p-2"><span class="fab fa-github"></span></a>
                             </p>
                         </div>
                     </div>
